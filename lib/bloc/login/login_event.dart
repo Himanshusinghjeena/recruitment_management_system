@@ -1,7 +1,14 @@
-abstract class LoginEvent{}
+abstract class LoginEvent {}
 
-class OnLoginEvent extends LoginEvent{}
+class OnInitialEvent extends LoginEvent {}
 
-class OnSignupEvent extends LoginEvent{}
+class OnLoginEvent extends LoginEvent {
+  final String email;
+  final String password;
 
-class OnForgotEvent extends LoginEvent{}
+  OnLoginEvent({required this.email, required this.password});
+}
+
+class OnSignupEvent extends LoginEvent {}
+
+class OnForgotEvent extends LoginEvent {}

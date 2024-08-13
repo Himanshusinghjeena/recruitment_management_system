@@ -67,6 +67,13 @@ class AppDataBase {
     return File(filePath).exists();
   }
 
+
+  Future<bool> checkLoginCredentials(String email, String password) async {
+    final Database db = await getDatabase();
+    var result = await db.rawQuery('SELECT * FROM ADMIN WHERE email = ? AND password = ?', [email, password]);
+    return result.isNotEmpty;
+  }
+
   Future<void> addCandidates(List<Candidates> candidates) async {
     final Database db = await getDatabase();
     Batch batch = db.batch();

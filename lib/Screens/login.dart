@@ -19,15 +19,14 @@ class LogInScreen extends StatefulWidget {
 
 class _LogInScreenState extends State<LogInScreen> {
   TextEditingController emailController = TextEditingController();
-  RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+  // RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
   TextEditingController passwordController = TextEditingController();
-  RegExp passwordRegExp = RegExp(
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,12}$');
+  // RegExp passwordRegExp = RegExp(
+  //     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,12}$');
 
   final formKey = GlobalKey<FormState>();
   bool rememberPassword = false;
-  bool _obscureText = true;
 
   // Future<bool?> login(String email, String password) async {
   //   final storedEmail = await Sharedpref().getDetail('email');
@@ -48,17 +47,19 @@ class _LogInScreenState extends State<LogInScreen> {
             create: (context) => LoginBloc(),
             child: BlocListener<LoginBloc, LoginState>(listener:
                 (context, state) {
-              if (state is SnackbarState) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.message),
-                    backgroundColor: Theme.of(context).primaryColor,
-                    elevation: 10,
-                    behavior: SnackBarBehavior.floating,
-                    margin: EdgeInsets.all(5),
-                  ),
-                );
-              } else if (state is SignupScreenState) {
+                  if (state is SnackbarState) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(state.message),
+                        backgroundColor: Theme.of(context).primaryColor,
+                        elevation: 10,
+                        behavior: SnackBarBehavior.floating,
+                        margin: EdgeInsets.all(5),
+                      ),
+                    );
+                    // .then((_) => context.read<LoginBloc>().add(OnInitialEvent()));
+                  }
+              else if (state is SignupScreenState) {
                 Navigator.pushNamed(context, '/signup');
               } else if (state is HomeScreenState) {
                 Navigator.pushNamed(context, '/home');
@@ -117,25 +118,28 @@ class _LogInScreenState extends State<LogInScreen> {
                                       validator: (value) {
                                         if (value!.isEmpty || value == null) {
                                           return 'Please enter Email';
-                                        } else if (!emailRegExp
-                                            .hasMatch(value)) {
-                                          return 'Please Enter a Valid Email';
                                         }
+                                        // else if (!emailRegExp
+                                        //     .hasMatch(value)) {
+                                        //   return 'Please Enter a Valid Email';
+                                        // }
                                         return null;
                                       },
                                     ),
                                     SizedBox(height: 20),
                                     CustomInputField(
                                       controller: passwordController,
+                                      icon: Icon(Icons.key_sharp),
                                       labelText: 'password',
                                       hintText: "Enter your password",
                                       validator: (value) {
                                         if (value!.isEmpty || value == null) {
                                           return 'Please enter Password';
-                                        } else if (!passwordRegExp
-                                            .hasMatch(value)) {
-                                          return "Please Enter A Valid Password";
                                         }
+                                        // else if (!passwordRegExp
+                                        //     .hasMatch(value)) {
+                                        //   return "Please Enter A Valid Password";
+                                        // }
                                         return null;
                                       },
                                       obscureText: true,
@@ -165,7 +169,9 @@ class _LogInScreenState extends State<LogInScreen> {
                                         ),
                                         GestureDetector(
                                           onTap: () {
-                                            context.read<LoginBloc>().add(OnForgotEvent());
+                                            // context.read<LoginBloc>().add(OnForgotEvent()).then((_) {
+                                            //   context.read<LoginBloc>().add(OnInitialEvent()); // Add this line
+                                            // });
                                           },
                                           child: Text(
                                             'Forgot password?',
@@ -184,7 +190,10 @@ class _LogInScreenState extends State<LogInScreen> {
                                         onPressed: () {
                                           context
                                               .read<LoginBloc>()
-                                              .add(OnLoginEvent());
+                                              .add(OnLoginEvent(
+                                            email: emailController.text,
+                                            password: passwordController.text
+                                          ));
                                         }),
                                     // Container(
                                     //     width: double.infinity,
