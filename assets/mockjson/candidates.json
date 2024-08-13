@@ -1,0 +1,911 @@
+{
+  "candidates": [
+    {
+      "recruitment_number": "C001",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "john.doe@gmail.com",
+        "phone": "+1234567890",
+
+          "street": "123 Elm Street",
+          "city": "Springfield",
+          "state": "IL",
+          "postal_code": "62701",
+
+        "gender": "Male",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C002",
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "email": "jane.smith@gmail.com",
+        "phone": "+0987654321",
+
+          "street": "456 Oak Avenue",
+          "city": "Metropolis",
+          "state": "NY",
+          "postal_code": "10001",
+
+
+        "gender": "Female",
+      "recruitment_status": "selected",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C003",
+        "first_name": "Alice",
+        "last_name": "Johnson",
+        "email": "alice.johnson@gmail.com",
+        "phone": "+1122334455",
+
+          "street": "789 Pine Road",
+          "city": "Smalltown",
+          "state": "TX",
+          "postal_code": "75001",
+
+        "gender": "Female",
+      "recruitment_status": "rejected",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C004",
+        "first_name": "Michael",
+        "last_name": "Brown",
+        "email": "michael.brown@gmail.com",
+        "phone": "+2233445566",
+
+          "street": "101 Maple Street",
+          "city": "Townsville",
+          "state": "CA",
+          "postal_code": "90001",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C005",
+        "first_name": "Emily",
+        "last_name": "Davis",
+        "email": "emily.davis@gmail.com",
+        "phone": "+3344556677",
+
+          "street": "202 Birch Lane",
+          "city": "Greenville",
+          "state": "SC",
+          "postal_code": "29601",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C006",
+        "first_name": "David",
+        "last_name": "Wilson",
+        "email": "david.wilson@gmail.com",
+        "phone": "+4455667788",
+          "street": "303 Cedar Road",
+          "city": "Riverside",
+          "state": "CA",
+          "postal_code": "92501",
+
+
+        "gender": "Male",
+      "recruitment_status": "in_progress",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C007",
+        "first_name": "Sophia",
+        "last_name": "Moore",
+        "email": "sophia.moore@gmail.com",
+        "phone": "+5566778899",
+
+          "street": "404 Elm Street",
+          "city": "Hometown",
+          "state": "FL",
+          "postal_code": "33101",
+
+        "gender": "Female",
+      "recruitment_status": "new",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C008",
+        "first_name": "Daniel",
+        "last_name": "Taylor",
+        "email": "daniel.taylor@gmail.com",
+        "phone": "+6677889900",
+
+          "street": "505 Pine Avenue",
+          "city": "Baytown",
+          "state": "TX",
+          "postal_code": "75002",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C009",
+        "first_name": "Olivia",
+        "last_name": "Anderson",
+        "email": "olivia.anderson@gmail.com",
+        "phone": "+7788990011",
+
+          "street": "606 Walnut Street",
+          "city": "Lakeside",
+          "state": "OH",
+          "postal_code": "43040",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C010",
+        "first_name": "James",
+        "last_name": "Thomas",
+        "email": "james.thomas@gmail.com",
+        "phone": "+8899001122",
+
+          "street": "707 Cherry Avenue",
+          "city": "Riverdale",
+          "state": "GA",
+          "postal_code": "30274",
+
+        "gender": "Male",
+      "recruitment_status": "selected",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C011",
+        "first_name": "Charlotte",
+        "last_name": "Martinez",
+        "email": "charlotte.martinez@gmail.com",
+        "phone": "+9900112233",
+
+          "street": "808 Birch Lane",
+          "city": "Mountainview",
+          "state": "CO",
+          "postal_code": "80014",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C012",
+        "first_name": "Liam",
+        "last_name": "Garcia",
+        "email": "liam.garcia@gmail.com",
+        "phone": "+0011223344",
+
+          "street": "909 Oak Street",
+          "city": "Hilltown",
+          "state": "NJ",
+          "postal_code": "07001",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C013",
+        "first_name": "Mia",
+        "last_name": "Lee",
+        "email": "mia.lee@gmail.com",
+        "phone": "+1122334455",
+
+          "street": "1010 Maple Avenue",
+          "city": "Seaside",
+          "state": "FL",
+          "postal_code": "32459",
+
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C014",
+        "first_name": "Noah",
+        "last_name": "Hernandez",
+        "email": "noah.hernandez@gmail.com",
+        "phone": "+2233445566",
+
+          "street": "1111 Pine Road",
+          "city": "Rockville",
+          "state": "MD",
+          "postal_code": "20850",
+
+        "gender": "Male",
+      "recruitment_status": "in_progress",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C015",
+        "first_name": "Amelia",
+        "last_name": "Robinson",
+        "email": "amelia.robinson@gmail.com",
+        "phone": "+3344556677",
+
+          "street": "1212 Cedar Lane",
+          "city": "Greenfield",
+          "state": "IN",
+          "postal_code": "46140",
+
+        "gender": "Female",
+      "recruitment_status": "rejected",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C016",
+        "first_name": "Elijah",
+        "last_name": "Clark",
+        "email": "elijah.clark@gmail.com",
+        "phone": "+4455667788",
+
+          "street": "1313 Birch Street",
+          "city": "Bluewater",
+          "state": "CA",
+          "postal_code": "92242",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C017",
+        "first_name": "Harper",
+        "last_name": "Walker",
+        "email": "harper.walker@gmail.com",
+        "phone": "+5566778899",
+
+          "street": "1414 Walnut Road",
+          "city": "Clearwater",
+          "state": "FL",
+          "postal_code": "33755",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C018",
+        "first_name": "William",
+        "last_name": "Young",
+        "email": "william.young@gmail.com",
+        "phone": "+6677889900",
+
+          "street": "1515 Cherry Avenue",
+          "city": "Springfield",
+          "state": "OR",
+          "postal_code": "97477",
+
+        "gender": "Male",
+      "recruitment_status": "selected",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C019",
+        "first_name": "Evelyn",
+        "last_name": "King",
+        "email": "evelyn.king@gmail.com",
+        "phone": "+7788990011",
+
+          "street": "1616 Maple Street",
+          "city": "Baytown",
+          "state": "TX",
+          "postal_code": "77520",
+
+        "gender": "Female",
+      "recruitment_status": "rejected",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C020",
+        "first_name": "Benjamin",
+        "last_name": "Wright",
+        "email": "benjamin.wright@gmail.com",
+        "phone": "+8899001122",
+
+          "street": "1717 Oak Road",
+          "city": "Lakeside",
+          "state": "IL",
+          "postal_code": "60040",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C021",
+        "first_name": "Abigail",
+        "last_name": "Scott",
+        "email": "abigail.scott@gmail.com",
+        "phone": "+9900112233",
+
+          "street": "1818 Cedar Avenue",
+          "city": "Greenville",
+          "state": "SC",
+          "postal_code": "29607",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C022",
+        "first_name": "Henry",
+        "last_name": "Torres",
+        "email": "henry.torres@gmail.com",
+        "phone": "+0011223344",
+
+          "street": "1919 Birch Road",
+          "city": "Townsville",
+          "state": "CA",
+          "postal_code": "90003",
+
+        "gender": "Male",
+      "recruitment_status": "in_progress",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C023",
+        "first_name": "Elizabeth",
+        "last_name": "Nguyen",
+        "email": "elizabeth.nguyen@gmail.com",
+        "phone": "+1122334455",
+
+          "street": "2020 Walnut Street",
+          "city": "Hometown",
+          "state": "FL",
+          "postal_code": "33012",
+
+        "gender": "Female",
+      "recruitment_status": "new",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C024",
+        "first_name": "Alexander",
+        "last_name": "Hill",
+        "email": "alexander.hill@gmail.com",
+        "phone": "+2233445566",
+
+          "street": "2121 Cherry Lane",
+          "city": "Riverdale",
+          "state": "GA",
+          "postal_code": "30296",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C025",
+        "first_name": "Avery",
+        "last_name": "Green",
+        "email": "avery.green@gmail.com",
+        "phone": "+3344556677",
+
+          "street": "2222 Oak Avenue",
+          "city": "Metropolis",
+          "state": "NY",
+          "postal_code": "10002",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C026",
+        "first_name": "Jack",
+        "last_name": "Adams",
+        "email": "jack.adams@gmail.com",
+        "phone": "+4455667788",
+
+          "street": "2323 Pine Street",
+          "city": "Smalltown",
+          "state": "TX",
+          "postal_code": "75003",
+
+        "gender": "Male",
+      "recruitment_status": "selected",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C027",
+        "first_name": "Sofia",
+        "last_name": "Baker",
+        "email": "sofia.baker@gmail.com",
+        "phone": "+5566778899",
+
+          "street": "2424 Maple Road",
+          "city": "Springfield",
+          "state": "IL",
+          "postal_code": "62702",
+
+        "gender": "Female",
+      "recruitment_status": "rejected",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C028",
+
+        "first_name": "Luke",
+        "last_name": "Carter",
+        "email": "luke.carter@gmail.com",
+        "phone": "+6677889900",
+
+          "street": "2525 Cedar Avenue",
+          "city": "Seaside",
+          "state": "FL",
+          "postal_code": "32460",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C029",
+
+        "first_name": "Mila",
+        "last_name": "Collins",
+        "email": "mila.collins@gmail.com",
+        "phone": "+7788990011",
+
+          "street": "2626 Walnut Street",
+          "city": "Mountainview",
+          "state": "CO",
+          "postal_code": "80015",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C030",
+
+        "first_name": "Ethan",
+        "last_name": "Morris",
+        "email": "ethan.morris@gmail.com",
+        "phone": "+8899001122",
+
+          "street": "2727 Cherry Road",
+          "city": "Clearwater",
+          "state": "FL",
+          "postal_code": "33756",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C031",
+
+        "first_name": "Ella",
+        "last_name": "Cook",
+        "email": "ella.cook@gmail.com",
+        "phone": "+9900112233",
+
+          "street": "2828 Oak Street",
+          "city": "Baytown",
+          "state": "TX",
+          "postal_code": "77521",
+
+        "gender": "Female",
+      "recruitment_status": "new",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C032",
+
+        "first_name": "Logan",
+        "last_name": "Rogers",
+        "email": "logan.rogers@gmail.com",
+        "phone": "+0011223344",
+
+          "street": "2929 Birch Road",
+          "city": "Greenfield",
+          "state": "IN",
+          "postal_code": "46141",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C033",
+
+        "first_name": "Grace",
+        "last_name": "Reed",
+        "email": "grace.reed@gmail.com",
+        "phone": "+1122334455",
+
+          "street": "3030 Pine Avenue",
+          "city": "Hilltown",
+          "state": "NJ",
+          "postal_code": "07002",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C034",
+
+        "first_name": "Mason",
+        "last_name": "Peterson",
+        "email": "mason.peterson@gmail.com",
+        "phone": "+2233445566",
+
+          "street": "3131 Walnut Street",
+          "city": "Springfield",
+          "state": "OR",
+          "postal_code": "97478",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C035",
+
+        "first_name": "Aria",
+        "last_name": "Cox",
+        "email": "aria.cox@gmail.com",
+        "phone": "+3344556677",
+
+          "street": "3232 Cherry Lane",
+          "city": "Townsville",
+          "state": "CA",
+          "postal_code": "90004",
+
+        "gender": "Female",
+      "recruitment_status": "rejected",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C036",
+
+        "first_name": "Lucas",
+        "last_name": "Ward",
+        "email": "lucas.ward@gmail.com",
+        "phone": "+4455667788",
+
+          "street": "3333 Oak Road",
+          "city": "Riverdale",
+          "state": "GA",
+          "postal_code": "30297",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C037",
+
+        "first_name": "Scarlett",
+        "last_name": "Ramirez",
+        "email": "scarlett.ramirez@gmail.com",
+        "phone": "+5566778899",
+
+          "street": "3434 Birch Avenue",
+          "city": "Lakeside",
+          "state": "OH",
+          "postal_code": "43041",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C038",
+
+        "first_name": "Michael",
+        "last_name": "Bell",
+        "email": "michael.bell@gmail.com",
+        "phone": "+6677889900",
+
+          "street": "3535 Pine Street",
+          "city": "Hometown",
+          "state": "FL",
+          "postal_code": "33102",
+
+        "gender": "Male",
+      "recruitment_status": "selected",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C039",
+
+        "first_name": "Chloe",
+        "last_name": "Murphy",
+        "email": "chloe.murphy@gmail.com",
+        "phone": "+7788990011",
+
+          "street": "3636 Cherry Road",
+          "city": "Metropolis",
+          "state": "NY",
+          "postal_code": "10003",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C040",
+
+        "first_name": "Samuel",
+        "last_name": "Bailey",
+        "email": "samuel.bailey@gmail.com",
+        "phone": "+8899001122",
+
+          "street": "3737 Oak Avenue",
+          "city": "Smalltown",
+          "state": "TX",
+          "postal_code": "75004",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C041",
+
+        "first_name": "Victoria",
+        "last_name": "Rivera",
+        "email": "victoria.rivera@gmail.com",
+        "phone": "+9900112233",
+
+          "street": "3838 Walnut Street",
+          "city": "Springfield",
+          "state": "IL",
+          "postal_code": "62703",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C042",
+
+        "first_name": "Liam",
+        "last_name": "Cooper",
+        "email": "liam.cooper@gmail.com",
+        "phone": "+0011223344",
+
+          "street": "3939 Birch Road",
+          "city": "Bluewater",
+          "state": "CA",
+          "postal_code": "92243",
+
+        "gender": "Male",
+      "recruitment_status": "selected",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C043",
+
+        "first_name": "Stella",
+        "last_name": "Brooks",
+        "email": "stella.brooks@gmail.com",
+        "phone": "+1122334455",
+
+          "street": "4040 Pine Road",
+          "city": "Clearwater",
+          "state": "FL",
+          "postal_code": "33757",
+
+        "gender": "Female",
+      "recruitment_status": "rejected",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C044",
+
+        "first_name": "Noah",
+        "last_name": "Ross",
+        "email": "noah.ross@gmail.com",
+        "phone": "+2233445566",
+
+          "street": "4141 Cherry Lane",
+          "city": "Baytown",
+          "state": "TX",
+          "postal_code": "77522",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C045",
+
+        "first_name": "Zoey",
+        "last_name": "Henderson",
+        "email": "zoey.henderson@gmail.com",
+        "phone": "+3344556677",
+
+          "street": "4242 Oak Avenue",
+          "city": "Greenfield",
+          "state": "IN",
+          "postal_code": "46142",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C046",
+
+        "first_name": "Jackson",
+        "last_name": "Powell",
+        "email": "jackson.powell@gmail.com",
+        "phone": "+4455667788",
+
+          "street": "4343 Birch Street",
+          "city": "Townsville",
+          "state": "CA",
+          "postal_code": "90005",
+
+        "gender": "Male",
+      "recruitment_status": "in_progress",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C047",
+
+        "first_name": "Hannah",
+        "last_name": "Foster",
+        "email": "hannah.foster@gmail.com",
+        "phone": "+5566778899",
+
+          "street": "4444 Maple Road",
+          "city": "Lakeside",
+          "state": "IL",
+          "postal_code": "60041",
+
+        "gender": "Female",
+      "recruitment_status": "new",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C048",
+
+        "first_name": "James",
+        "last_name": "Hayes",
+        "email": "james.hayes@gmail.com",
+        "phone": "+6677889900",
+
+          "street": "4545 Pine Avenue",
+          "city": "Hometown",
+          "state": "FL",
+          "postal_code": "33103",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C049",
+
+        "first_name": "Layla",
+        "last_name": "Gonzalez",
+        "email": "layla.gonzalez@gmail.com",
+        "phone": "+7788990011",
+
+          "street": "4646 Cherry Road",
+          "city": "Metropolis",
+          "state": "NY",
+          "postal_code": "10004",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C050",
+
+        "first_name": "Daniel",
+        "last_name": "Hughes",
+        "email": "daniel.hughes@gmail.com",
+        "phone": "+8899001122",
+
+          "street": "4747 Oak Street",
+          "city": "Smalltown",
+          "state": "TX",
+          "postal_code": "75005",
+
+        "gender": "Male",
+      "recruitment_status": "selected",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C051",
+
+        "first_name": "Penelope",
+        "last_name": "Kelly",
+        "email": "penelope.kelly@gmail.com",
+        "phone": "+9900112233",
+
+          "street": "4848 Walnut Street",
+          "city": "Springfield",
+          "state": "IL",
+          "postal_code": "62704",
+
+        "gender": "Female",
+      "recruitment_status": "in_progress",
+      "applied_designation": "Manager"
+    },
+    {
+      "recruitment_number": "C052",
+
+        "first_name": "Lily",
+        "last_name": "Perez",
+        "email": "lily.perez@gmail.com",
+        "phone": "+0011223344",
+
+          "street": "4949 Birch Road",
+          "city": "Bluewater",
+          "state": "CA",
+          "postal_code": "92244",
+
+        "gender": "Female",
+      "recruitment_status": "new",
+      "applied_designation": "BA"
+    },
+    {
+      "recruitment_number": "C053",
+
+        "first_name": "Leo",
+        "last_name": "Morgan",
+        "email": "leo.morgan@gmail.com",
+        "phone": "+1122334455",
+
+          "street": "5050 Pine Avenue",
+          "city": "Clearwater",
+          "state": "FL",
+          "postal_code": "33758",
+
+        "gender": "Male",
+      "recruitment_status": "in_progress",
+      "applied_designation": "SDE"
+    },
+    {
+      "recruitment_number": "C054",
+
+        "first_name": "David",
+        "last_name": "Howard",
+        "email": "david.howard@gmail.com",
+        "phone": "+2233445566",
+
+          "street": "5151 Cherry Lane",
+          "city": "Baytown",
+          "state": "TX",
+          "postal_code": "77523",
+
+        "gender": "Male",
+      "recruitment_status": "new",
+      "applied_designation": "HR"
+    },
+    {
+      "recruitment_number": "C055",
+        "first_name": "Hazel",
+        "last_name": "Barnes",
+        "email": "hazel.barnes@gmail.com",
+        "phone": "+3344556677",
+
+          "street": "5252 Oak Avenue",
+          "city": "Greenfield",
+          "state": "IN",
+          "postal_code": "46143",
+
+        "gender": "Female",
+      "recruitment_status": "new",
+      "applied_designation": "Manager"
+    }
+  ]
+}
