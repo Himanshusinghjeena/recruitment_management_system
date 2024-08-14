@@ -8,6 +8,7 @@ import 'package:recruitment_management_system/bloc/login/login_state.dart';
 import 'package:recruitment_management_system/components/button.dart';
 import 'package:recruitment_management_system/components/customInput.dart';
 import 'package:recruitment_management_system/Screens/signup.dart';
+import 'package:recruitment_management_system/components/customSnackbar.dart';
 
 import '../bloc/login/login_event.dart';
 import '../constant/constant.dart';
@@ -47,29 +48,31 @@ class _LogInScreenState extends State<LogInScreen> {
             create: (context) => LoginBloc(),
             child: BlocListener<LoginBloc, LoginState>(listener:
                 (context, state) {
-                  if (state is SnackbarState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.message),
-                        backgroundColor: Theme.of(context).primaryColor,
-                        elevation: 10,
-                        behavior: SnackBarBehavior.floating,
-                        margin: EdgeInsets.all(5),
-                      ),
+                  if (state is LoginSuccessState) {
+                    CustomSnackBar.show(
+                      context,
+                      "Login Successfully.........",
+                      backgroundColor: Theme.of(context).primaryColor,
                     );
-                    // .then((_) => context.read<LoginBloc>().add(OnInitialEvent()));
+                    Navigator.pushNamed(context, '/bottom');
                   }
-              else if (state is SignupScreenState) {
+              if (state is LoginFailureState) {
+                CustomSnackBar.show(
+                  context,
+                  state.message,
+                  backgroundColor: Theme.of(context).primaryColor,
+                );
+              }
+              if (state is SignupState) {
                 Navigator.pushNamed(context, '/signup');
-              } else if (state is HomeScreenState) {
-                Navigator.pushNamed(context, '/home');
-              } else if (state is ForgotScreenState) {
+              }
+              if (state is ForgotPassState) {
                 Navigator.pushNamed(context, '/forgot');
               }
             }, child:
                 BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
               if (state is InitialState) {
-              return  Stack(
+                return Stack(
                   children: [
                     Container(
                         height: MediaQuery.of(context).size.height,
@@ -169,9 +172,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                         ),
                                         GestureDetector(
                                           onTap: () {
-                                            // context.read<LoginBloc>().add(OnForgotEvent()).then((_) {
-                                            //   context.read<LoginBloc>().add(OnInitialEvent()); // Add this line
-                                            // });
+                                           context.read<LoginBloc>().add(OnForgotEvent());
                                           },
                                           child: Text(
                                             'Forgot password?',
@@ -188,12 +189,13 @@ class _LogInScreenState extends State<LogInScreen> {
                                     CustomButton(
                                         innerText: "Log in",
                                         onPressed: () {
-                                          context
-                                              .read<LoginBloc>()
-                                              .add(OnLoginEvent(
-                                            email: emailController.text,
-                                            password: passwordController.text
-                                          ));
+                                         if (formKey.currentState!.validate()) {
+                                           context.read<LoginBloc>().add(
+                                               OnLoginEvent(
+                                                   email: emailController.text,
+                                                   password:
+                                                   passwordController.text));
+                                         }
                                         }),
                                     // Container(
                                     //     width: double.infinity,
@@ -258,7 +260,9 @@ class _LogInScreenState extends State<LogInScreen> {
                                         Text("Doesn't have an account? "),
                                         GestureDetector(
                                             onTap: () {
-                                             context.read<LoginBloc>().add(OnSignupEvent());
+                                              context
+                                                  .read<LoginBloc>()
+                                                  .add(OnSignupEvent());
                                             },
                                             child: Text("Sign up",
                                                 style: TextStyle(
@@ -276,9 +280,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ],
                 );
               }
-              return SizedBox.shrink(
-                child:Text("Nothing to Show......")
-              );
+              return SizedBox.shrink(child: Text("Nothing to Show......"));
             }))));
   }
 }

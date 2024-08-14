@@ -204,7 +204,7 @@
           "city": "Seaside",
           "state": "FL",
           "postal_code": "32459",
-
+      "gender": "Female",
       "recruitment_status": "in_progress",
       "applied_designation": "SDE"
     },

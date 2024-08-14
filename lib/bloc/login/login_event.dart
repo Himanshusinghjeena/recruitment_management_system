@@ -3,8 +3,8 @@ abstract class LoginEvent {}
 class OnInitialEvent extends LoginEvent {}
 
 class OnLoginEvent extends LoginEvent {
-  final String email;
-  final String password;
+   String email;
+   String password;
 
   OnLoginEvent({required this.email, required this.password});
 }

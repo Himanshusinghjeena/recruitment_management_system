@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recruitment_management_system/Screens/bottom_navigator.dart';
 import 'package:recruitment_management_system/Screens/forgot.dart';
 import 'package:recruitment_management_system/Screens/homescreen.dart';
 import 'package:recruitment_management_system/database/dbhelper.dart';
@@ -36,10 +37,11 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => LogInScreen(),
+        '/': (context) =>  LogInScreen(),
         '/signup': (context) => SignUpScreen(),
         '/forgot':(context)=>const ForgotPassword(),
-        '/home':(context)=>Home(),
+        '/home':(context)=>const Home(),
+        '/bottom':(context)=>const BottomNavigationWidget(),
       },
     );
   }

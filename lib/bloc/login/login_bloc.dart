@@ -11,20 +11,22 @@ class LoginBloc extends Bloc<LoginEvent,LoginState>{
     on<OnInitialEvent>(_initialEvent);
   }
   void _LoginEvent(OnLoginEvent event, Emitter<LoginState> emit) async {
+    print("Event Called");
+    print(event.email);
+    print(event.password);
     bool isValid = await AppDataBase().checkLoginCredentials(event.email,event.password);
     if (isValid) {
-      emit(SnackbarState("Login Successfully"));
-      emit(HomeScreenState());
+      emit(LoginSuccessState());
     } else {
-      emit(SnackbarState("Invalid username or password"));
+      emit(LoginFailureState("Invalid username or password"));
     }
   }
 
   void _SignupEvent(OnSignupEvent event ,Emitter<LoginState>emit) {
-    emit(SignupScreenState());
+    emit(SignupState());
   }
   void _ForgotEvent(OnForgotEvent event,Emitter<LoginState>emit){
-    emit(ForgotScreenState());
+    emit(ForgotPassState());
   }
 
   void _initialEvent(OnInitialEvent event,Emitter<LoginState>emit)

@@ -1,18 +1,27 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recruitment_management_system/bloc/signup/signup_event.dart';
 import 'package:recruitment_management_system/bloc/signup/signup_state.dart';
+import 'package:recruitment_management_system/database/dbhelper.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
   SignupBloc() : super(InitialState()) {
-    on<OnSignupEvent>(_LoginEvent);
-    on<OnLoginEvent>(_SignupEvent);
+    on<OnSignupSuccessEvent>(_SignupSuccessEvent);
+    on<OnSignupFailureEvent>(_SignupFailureEvent);
+    on<OnLoginEvent>(_LoginEvent);
   }
-  void _LoginEvent(OnSignupEvent event, Emitter<SignupState> emit) {
-    emit(LoginState());
+  void _SignupSuccessEvent(
+      OnSignupSuccessEvent event, Emitter<SignupState> emit) async {
+   await AppDataBase()
+        .insertAdmin(event.username, event.email, event.password, event.phone);
+    emit(SignupSuccessState());
   }
 
-  void _SignupEvent(OnLoginEvent event, Emitter<SignupState> emit) {
-    emit(SnackbarState("SignUp Successfully"));
-    emit(LoginState());
+  void _SignupFailureEvent(
+      OnSignupFailureEvent event, Emitter<SignupState> emit) {
+    emit(SignupFailureState(message:event.message));
+  }
+
+  void _LoginEvent(OnLoginEvent event, Emitter<SignupState> emit) {
+    emit(AlreadySignupState());
   }
 }

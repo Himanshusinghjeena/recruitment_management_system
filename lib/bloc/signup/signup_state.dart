@@ -1,14 +1,12 @@
+abstract class SignupState {}
 
-abstract class SignupState{}
+class InitialState extends SignupState {}
 
-class InitialState extends SignupState{}
+class AlreadySignupState extends SignupState {}
 
-class LoginState extends SignupState{}
+class SignupSuccessState extends SignupState {}
 
-
-class SnackbarState extends SignupState {
+class SignupFailureState extends SignupState {
   final String message;
-
-  SnackbarState(this.message);
+  SignupFailureState({required this.message});
 }
-

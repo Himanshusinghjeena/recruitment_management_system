@@ -5,6 +5,8 @@ import 'package:recruitment_management_system/api/api.dart';
 import 'package:sqflite/sqflite.dart';
 
 class AppDataBase {
+  static int _adminCounter = 1;
+
   static const String userDbFileName = 'user.db';
   Future createDbPath() async {
     final String databaseFilePath;
@@ -74,6 +76,46 @@ class AppDataBase {
     return result.isNotEmpty;
   }
 
+  // Default Admin
+  Future<void> addAdmin() async {
+    final Database db = await getDatabase();
+    String userid = 'admin${_adminCounter.toString().padLeft(3, '0')}';
+    _adminCounter++;
+    Map<String, dynamic> adminDetails = {
+      'userid': userid,
+      'name': 'Himanshu Jeena',
+      'contact': '9599209518',
+      'email': 'himanshujeena9718@gmail.com',
+      'address': 'Vijay Nagar GZB',
+      'designation': 'Admin',
+      'password': 'Jeena9718@',
+    };
+    try {
+      await db.insert('ADMIN', adminDetails);
+      print('Admin detail added successfully of $userid');
+    } catch (e) {
+      print('Error adding admin detail: $e');
+    }
+  }
+
+  // Add Mor ADMIN's to ADMIN Table
+  Future<void> insertAdmin(String email, String username, String password, String phone) async {
+    final Database db = await getDatabase();
+    String userid = 'admin${_adminCounter.toString().padLeft(3, '0')}';
+    _adminCounter++;
+    await db.insert(
+      'ADMIN',
+      {
+        'userid':userid,
+        'email': email,
+        'name': username,
+        'password': password,
+        'contact': phone,
+      },
+    );
+  }
+
+
   Future<void> addCandidates(List<Candidates> candidates) async {
     final Database db = await getDatabase();
     Batch batch = db.batch();
@@ -103,6 +145,7 @@ class AppDataBase {
     List<Candidates> apidata = await DataService().getData();
     final AppDataBase appDatabase = AppDataBase();
     await appDatabase.addCandidates(apidata);
+    await appDatabase.addAdmin();
   }
 
   // Fetch the Active Candidates from recruitment table
@@ -146,6 +189,42 @@ class AppDataBase {
     }
     return statusCountMap;
   }
+
+ // fetch number of candidates by gender count
+  Future<Map<String, double>> getCandidatesByGenderCount() async {
+    Database _dbClient = await getDatabase();
+    List<Map<String, dynamic>> dbdata = await _dbClient.rawQuery("""
+    SELECT gender, COUNT(*) as count 
+    FROM RECRUITMENT 
+    GROUP BY gender
+  """);
+    print(dbdata);
+
+    Map<String, double> genderCountMap = {};
+    for (var data in dbdata) {
+      genderCountMap[data['gender']] = data['count'].toDouble();
+    }
+    print(genderCountMap);
+    return genderCountMap;
+  }
+
+// Fetch the number of candidates by designation count
+  Future<Map<String, double>> getCandidatesByDesignationCount() async {
+    Database _dbClient = await getDatabase();
+    List<Map<String, dynamic>> dbdata = await _dbClient.rawQuery("""
+    SELECT applied_designation, COUNT(*) as count 
+    FROM RECRUITMENT 
+    GROUP BY applied_designation
+  """);
+
+    Map<String, double> designationCountMap = {};
+    for (var data in dbdata) {
+      designationCountMap[data['applied_designation']] = data['count'].toDouble();
+    }
+    print(designationCountMap);
+    return designationCountMap;
+  }
+
 
   // update the status of the candidate
   Future<void> updateCandidateStatus(String? recruit_number, String newStatus) async {
