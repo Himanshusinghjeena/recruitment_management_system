@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:recruitment_management_system/Screens/details.dart';
+import 'package:recruitment_management_system/Services/api.dart';
 
-import '../api/api.dart';
 
 class CustomListBuilder extends StatefulWidget {
   final List<Candidates> candidate;
-  CustomListBuilder({required this.candidate});
+  bool active;
+  CustomListBuilder({required this.candidate, required this.active});
 
   @override
   State<CustomListBuilder> createState() => _CustomListBuilderState();
@@ -16,48 +17,6 @@ class _CustomListBuilderState extends State<CustomListBuilder> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-               Expanded(
-                flex: 2,
-                child: Container(
-
-                  // color:Colors.grey,
-                  child: const Center(
-                    child: Text(
-                      ' Id',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 8,
-                child: Container(
-                  // color:Colors.pink,
-                  child: const Center(
-                  child: Text(
-                    'Name',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),),
-
-              Expanded(
-                flex: 4,
-                child: Container(
-                  // color:Colors.amber,
-                  child: const Text(
-                    'Designation',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
         Expanded(
           child: ListView.builder(
             itemCount: widget.candidate.length,
@@ -67,35 +26,55 @@ class _CustomListBuilderState extends State<CustomListBuilder> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Details(widget.candidate[index]),
+                      builder: (context) => Details(
+                          active: widget.active,
+                          candidate: widget.candidate[index]),
                     ),
                   );
                 },
                 child: ListTile(
-                  leading: Text(
-                    widget.candidate[index].recruitmentNumber ?? "recruit number",
-                    style: const TextStyle(fontSize: 15),
+                  leading: Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: Image.asset(
+                          fit: BoxFit.fill,
+                          widget.candidate[index].gender == "Male"
+                              ? 'assets/images/default_male.jpg'
+                              : 'assets/images/default_female.jpg',
+                        ).image,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
                   ),
+
                   title: Text(
                     '${widget.candidate[index].firstName ?? 'first'} ${widget.candidate[index].lastName ?? 'last'}',
                     style: const TextStyle(
-                        color: Colors.black, fontSize: 20),
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    widget.candidate[index].recruitmentStatus ?? 'get-out',
-                    style: TextStyle(
-                      color: widget.candidate[index].recruitmentStatus == 'rejected'
-                          ? Colors.red
-                          : widget.candidate[index].recruitmentStatus == 'selected'
-                          ? Colors.green
-                          : Colors.black,
-                      fontSize: 18,
-                    ),
+                    "Mob:  ${widget.candidate[index].phone}" ?? '',
+                    style: const TextStyle(color: Colors.black, fontSize: 18),
                   ),
+                  // Text(
+                  //   widget.candidate[index].recruitmentStatus ?? 'get-out',
+                  //   style: TextStyle(
+                  //     color: widget.candidate[index].recruitmentStatus == 'rejected'
+                  //         ? Colors.red
+                  //         : widget.candidate[index].recruitmentStatus == 'selected'
+                  //         ? Colors.green
+                  //         : Colors.black,
+                  //     fontSize: 18,
+                  //   ),
+                  // ),
                   trailing: Text(
                     widget.candidate[index].appliedDesignation ?? '',
-                    style: const TextStyle(
-                        color: Colors.black, fontSize: 15),
+                    style: const TextStyle(color: Colors.black, fontSize: 18),
                   ),
                 ),
               );

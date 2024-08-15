@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:recruitment_management_system/Services/dbhelper.dart';
 import 'package:recruitment_management_system/bloc/login/login_event.dart';
 import 'package:recruitment_management_system/bloc/login/login_state.dart';
-import 'package:recruitment_management_system/database/dbhelper.dart';
 
 class LoginBloc extends Bloc<LoginEvent,LoginState>{
   LoginBloc():super(InitialState()){

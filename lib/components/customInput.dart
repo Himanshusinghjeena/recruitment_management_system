@@ -9,9 +9,9 @@ class CustomInputField extends StatefulWidget {
   final bool suffixIcon;
   bool obscureText;
   final TextInputType keyboardType;
+  final VoidCallback? onFieldSubmitted;
 
   CustomInputField({
-
     this.controller,
     this.icon,
     required this.labelText,
@@ -20,6 +20,7 @@ class CustomInputField extends StatefulWidget {
     this.suffixIcon = false,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -67,20 +68,23 @@ class _CustomInputFieldState extends State<CustomInputField> {
           labelText: widget.labelText,
           suffixIcon: widget.suffixIcon
               ? IconButton(
-            icon: Icon(
-              widget.obscureText ? Icons.visibility : Icons.visibility_off,
-              color: Colors.black54,
-            ),
-            onPressed: () {
-              setState(() {
-                widget.obscureText = !widget.obscureText;
-              });
-            },
-          )
+                  icon: Icon(
+                    widget.obscureText
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                    color: Colors.black54,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      widget.obscureText = !widget.obscureText;
+                    });
+                  },
+                )
               : null,
         ),
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: widget.validator,
+        textInputAction: TextInputAction.next,
       ),
     );
   }

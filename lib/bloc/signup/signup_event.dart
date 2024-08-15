@@ -5,11 +5,14 @@ class OnSignupSuccessEvent extends SignupEvent{
   final String email;
   final String password;
   final String phone;
-  OnSignupSuccessEvent(
-       this.username,
-         this.email,
-         this.password,
-         this.phone);
+  final String designation;
+  OnSignupSuccessEvent({
+     required  this.username,
+        required this.email,
+       required  this.password,
+        required this.phone,
+        required this.designation
+  });
 }
 
 class OnSignupFailureEvent extends SignupEvent{

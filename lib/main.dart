@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:recruitment_management_system/Screens/bottom_navigator.dart';
 import 'package:recruitment_management_system/Screens/forgot.dart';
-import 'package:recruitment_management_system/Screens/homescreen.dart';
-import 'package:recruitment_management_system/database/dbhelper.dart';
+import 'package:recruitment_management_system/Services/dbhelper.dart';
 import 'package:recruitment_management_system/Screens/login.dart';
 import 'package:recruitment_management_system/Screens/signup.dart';
 
@@ -40,8 +38,8 @@ class MyApp extends StatelessWidget {
         '/': (context) =>  LogInScreen(),
         '/signup': (context) => SignUpScreen(),
         '/forgot':(context)=>const ForgotPassword(),
-        '/home':(context)=>const Home(),
-        '/bottom':(context)=>const BottomNavigationWidget(),
+        // '/home':(context)=>const Home(),
+        // '/home':(context)=> HomeScreen(email: email),
       },
     );
   }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:recruitment_management_system/api/api.dart';
-import 'package:recruitment_management_system/database/dbhelper.dart';
+import 'package:recruitment_management_system/Screens/Inactive.dart';
+import 'package:recruitment_management_system/Screens/active.dart';
+import 'package:recruitment_management_system/Services/api.dart';
+import 'package:recruitment_management_system/Services/dbhelper.dart';
 
 class Details extends StatefulWidget {
   Candidates? candidate;
-  Details(this.candidate);
+  bool active;
+  Details({this.candidate, required this.active});
   @override
   State<Details> createState() => _DetailsState();
 }
@@ -26,130 +29,286 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent,
-      ),
-      body: SafeArea(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          color: Colors.lightBlueAccent,
-          child: Stack(
-            children: [
-              const Positioned(
-                top: 10,
-                left: 30,
-                child: CircleAvatar(
-                  radius: 70,
-                  child: Icon(
-                    Icons.person,
-                    size: 100,
+        body: SafeArea(
+            child: Container(
+      height: MediaQuery.of(context).size.height,
+      color: Theme.of(context).canvasColor,
+      child: Stack(
+        children: [
+          Positioned(
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.3,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50))),
+              child:
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                const SizedBox(height: 30),
+                Container(
+                  height: 120,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: Image.asset(
+                        fit: BoxFit.fill,
+                        widget.candidate!.gender == "Male"
+                            ? 'assets/images/default_male.jpg'
+                            : 'assets/images/default_female.jpg',
+                      ).image,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
-              ),
-              Positioned(
-                top: 180,
-                right: 40,
-                left: 40,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 10.0,
-                        spreadRadius: 2.0,
-                      )
-                    ],
-                  ),
-                  height: MediaQuery.of(context).size.height * 0.45,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                            "Recruitment Number: ${widget.candidate!.recruitmentNumber}",
-                            style: const TextStyle(fontSize: 20)),
-                        Text(
-                            "Name: ${widget.candidate!.firstName} ${widget.candidate!.lastName}",
-                            style: const TextStyle(fontSize: 20)),
-                        Text("Email: ${widget.candidate!.email}",
-                            style: const TextStyle(fontSize: 20)),
-                        Text("Phone: ${widget.candidate!.phone}",
-                            style: const TextStyle(fontSize: 20)),
-                        Text(
-                            "Address: ${widget.candidate!.street}, ${widget.candidate!.city ?? "Address"} ",
-                            style: const TextStyle(fontSize: 20)),
-                        Text("Gender: ${widget.candidate!.gender}",
-                            style: const TextStyle(fontSize: 20)),
-                        Row(
-                          children: [
-                            const Text("Status:",
-                                style: TextStyle(fontSize: 20)),
-                            const SizedBox(width: 15),
-                            DropdownButton(
-                              value: dropdownvalue,
-                              icon: const Icon(Icons.keyboard_arrow_down),
-                              items: status.map((String items) {
-                                return DropdownMenuItem(
-                                  value: items,
-                                  child: Text(items,
-                                      style: const TextStyle(fontSize: 20)),
-                                );
-                              }).toList(),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  dropdownvalue = newValue!;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
 
-                        // Text("Status: ${widget.candidate!.recruitmentStatus}",
-                        //     style: const TextStyle(fontSize: 20)),
-                        Text(
-                            "Designation: ${widget.candidate!.appliedDesignation}",
-                            style: const TextStyle(fontSize: 20)),
+                const SizedBox(height: 10),
+                Text(
+                    "${widget.candidate!.firstName} ${widget.candidate!.lastName} (${widget.candidate!.gender})",
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 30))
+              ]),
+            ),
+          ),
+          Positioned(
+              top: 20,
+              left: 10,
+              child: IconButton(
+                icon:  Icon(color:Theme.of(context).highlightColor,Icons.arrow_back, size: 40),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )),
+          Positioned(
+              top: 240,
+              left: 30,
+              right: 30,
+              child: Expanded(
+                  child: Column(children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text.rich(TextSpan(
+                        text: "Recruitment Number: ",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 24),
+                        children: [
+                          TextSpan(
+                              text: "${widget.candidate!.recruitmentNumber}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.normal, fontSize: 22))
+                        ])),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text.rich(TextSpan(
+                        text: "Contact No. : ",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 24),
+                        children: [
+                          TextSpan(
+                              text: widget.candidate!.phone ?? "Contact Number",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.normal, fontSize: 22))
+                        ])),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                      child: Text.rich(
+                    TextSpan(
+                      children: [
+                        WidgetSpan(
+                          child: SizedBox(
+                            width: 320,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Address : ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      widget.candidate!.street!,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                    Text(
+                                      widget.candidate!.city ?? "Address",
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text.rich(TextSpan(
+                        text: "Email : ",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 24),
+                        children: [
+                          TextSpan(
+                              text: "${widget.candidate!.email ?? "Email"} ",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.normal, fontSize: 22))
+                        ])),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text.rich(TextSpan(
+                        text: "Designation : ",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 24),
+                        children: [
+                          TextSpan(
+                              text:
+                                  "${widget.candidate!.appliedDesignation ?? "Applied Designation"} ",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.normal, fontSize: 22))
+                        ])),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Status:",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 24),
+                        ),
+                        const SizedBox(width: 15),
+                        Container(
+                          width: 200, // Set the width of the DropdownButton
+                          height: 50, // Set the height of the DropdownButton
+                          child: DropdownButton(
+                            value: dropdownvalue,
+                            icon:
+                                const Icon(Icons.keyboard_arrow_down, size: 40),
+                            items: status.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 22)),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue = newValue!;
+                              });
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                ),
-              ),
-              Positioned(
-                bottom: 90,
-                right: 50,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await AppDataBase().updateCandidateStatus(widget.candidate!.recruitmentNumber,
-                        dropdownvalue! );
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Candidate status updated successfully!"),
-                        backgroundColor: Colors.green,
-                        elevation: 10,
-                        behavior: SnackBarBehavior.floating,
-                        margin: EdgeInsets.all(5),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.lightBlueAccent,
+                )
+              ]))),
+          Positioned(
+            bottom: 50,
+            right: 30,
+            child: ElevatedButton(
+              onPressed: () async {
+                await AppDataBase().updateCandidateStatus(
+                    widget.candidate!.recruitmentNumber, dropdownvalue!);
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Candidate status updated successfully!"),
+                    backgroundColor: Colors.green,
+                    elevation: 10,
+                    behavior: SnackBarBehavior.floating,
+                    margin: EdgeInsets.all(5),
                   ),
-                  child: const Text("Save", style: TextStyle(fontSize: 25)),
+                );
+                if (widget.active) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ActiveScreen()),
+                  );
+                } else {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const InActiveScreen()),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.lightBlueAccent,
               ),
-            ],
+              child: const Text("Save", style: TextStyle(fontSize: 25)),
+            ),
           ),
-        ),
+        ],
       ),
-    );
+    ))
+
+
+        );
   }
 }

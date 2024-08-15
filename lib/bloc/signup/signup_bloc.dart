@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:recruitment_management_system/Services/dbhelper.dart';
 import 'package:recruitment_management_system/bloc/signup/signup_event.dart';
 import 'package:recruitment_management_system/bloc/signup/signup_state.dart';
-import 'package:recruitment_management_system/database/dbhelper.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
   SignupBloc() : super(InitialState()) {
@@ -12,7 +12,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
   void _SignupSuccessEvent(
       OnSignupSuccessEvent event, Emitter<SignupState> emit) async {
    await AppDataBase()
-        .insertAdmin(event.username, event.email, event.password, event.phone);
+        .insertAdmin(event.username, event.email, event.password, event.phone,event.designation);
     emit(SignupSuccessState());
   }
 

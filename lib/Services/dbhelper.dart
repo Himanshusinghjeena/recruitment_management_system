@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:recruitment_management_system/api/api.dart';
+import 'package:recruitment_management_system/Services/api.dart';
 import 'package:sqflite/sqflite.dart';
 
 class AppDataBase {
@@ -50,7 +50,7 @@ class AppDataBase {
           postal_code VARCHAR(20),
           gender TEXT(6),
           recruitment_status VARCHAR(20),
-          applied_designation VARCHAR(10)
+          applied_designation VARCHAR(10)          
           )
           ''');
         print("RECRUITMENT Table Created");
@@ -69,10 +69,13 @@ class AppDataBase {
     return File(filePath).exists();
   }
 
-
   Future<bool> checkLoginCredentials(String email, String password) async {
+    print("mail: $email");
     final Database db = await getDatabase();
-    var result = await db.rawQuery('SELECT * FROM ADMIN WHERE email = ? AND password = ?', [email, password]);
+    var result = await db.rawQuery(
+        'SELECT * FROM ADMIN WHERE email = ? AND password = ?',
+        [email, password]);
+    print(result.isNotEmpty);
     return result.isNotEmpty;
   }
 
@@ -98,23 +101,25 @@ class AppDataBase {
     }
   }
 
-  // Add Mor ADMIN's to ADMIN Table
-  Future<void> insertAdmin(String email, String username, String password, String phone) async {
+  // Add More ADMIN's to ADMIN Table
+  Future<void> insertAdmin(
+      String username,String email, String password, String phone,String designation) async {
     final Database db = await getDatabase();
     String userid = 'admin${_adminCounter.toString().padLeft(3, '0')}';
     _adminCounter++;
     await db.insert(
       'ADMIN',
       {
-        'userid':userid,
-        'email': email,
+        'userid': userid,
         'name': username,
-        'password': password,
         'contact': phone,
+        'email': email,
+        'address': 'null',
+        'designation': designation,
+        'password': password,
       },
     );
   }
-
 
   Future<void> addCandidates(List<Candidates> candidates) async {
     final Database db = await getDatabase();
@@ -155,11 +160,37 @@ class AppDataBase {
     SELECT * FROM RECRUITMENT 
     WHERE recruitment_status IN ('new', 'in_progress')
   """);
-    List<Candidates> list = dbdata.map((map) => Candidates.fromJson(map)).toList();
+    List<Candidates> list =
+        dbdata.map((map) => Candidates.fromJson(map)).toList();
     print("Active candidates fetched successfully..........");
     return list;
   }
 
+  // Fetch the New Active Candidates from recruitment table
+  Future<List<Candidates>> showNewCandidateList() async {
+    Database _dbClient = await getDatabase();
+    List<Map<String, dynamic>> dbdata = await _dbClient.rawQuery("""
+    SELECT * FROM RECRUITMENT 
+    WHERE recruitment_status IN ('new')
+  """);
+    List<Candidates> list =
+        dbdata.map((map) => Candidates.fromJson(map)).toList();
+    print("New candidates fetched successfully..........");
+    return list;
+  }
+
+  // Fetch the in_progress Active Candidates from recruitment table
+  Future<List<Candidates>> showInProgressCandidateList() async {
+    Database _dbClient = await getDatabase();
+    List<Map<String, dynamic>> dbdata = await _dbClient.rawQuery("""
+    SELECT * FROM RECRUITMENT 
+    WHERE recruitment_status IN ('in_progress')
+  """);
+    List<Candidates> list =
+        dbdata.map((map) => Candidates.fromJson(map)).toList();
+    print("New candidates fetched successfully..........");
+    return list;
+  }
 
   // Fetch the Inactive Candidates from recruitment table
   Future<List<Candidates>> showInActiveCandidateList() async {
@@ -168,11 +199,37 @@ class AppDataBase {
     SELECT * FROM RECRUITMENT 
     WHERE recruitment_status IN ('rejected', 'selected')
   """);
-    List<Candidates> list = dbdata.map((map) => Candidates.fromJson(map)).toList();
+    List<Candidates> list =
+        dbdata.map((map) => Candidates.fromJson(map)).toList();
     print("InActive candidates fetched successfully..........");
     return list;
   }
 
+  // Fetch the Selected InActive Candidates from recruitment table
+  Future<List<Candidates>> showSelectedCandidateList() async {
+    Database _dbClient = await getDatabase();
+    List<Map<String, dynamic>> dbdata = await _dbClient.rawQuery("""
+    SELECT * FROM RECRUITMENT 
+    WHERE recruitment_status IN ('selected')
+  """);
+    List<Candidates> list =
+        dbdata.map((map) => Candidates.fromJson(map)).toList();
+    print("selected candidates fetched successfully..........");
+    return list;
+  }
+
+  // Fetch the Rejected InActive Candidates from recruitment table
+  Future<List<Candidates>> showRejectedCandidateList() async {
+    Database _dbClient = await getDatabase();
+    List<Map<String, dynamic>> dbdata = await _dbClient.rawQuery("""
+    SELECT * FROM RECRUITMENT 
+    WHERE recruitment_status IN ('rejected')
+  """);
+    List<Candidates> list =
+        dbdata.map((map) => Candidates.fromJson(map)).toList();
+    print("rejected candidates fetched successfully..........");
+    return list;
+  }
 
 // Fetch the number of candidates status as count
   Future<Map<String, double>> getRecruitmentStatusCount() async {
@@ -190,7 +247,7 @@ class AppDataBase {
     return statusCountMap;
   }
 
- // fetch number of candidates by gender count
+  // fetch number of candidates by gender count
   Future<Map<String, double>> getCandidatesByGenderCount() async {
     Database _dbClient = await getDatabase();
     List<Map<String, dynamic>> dbdata = await _dbClient.rawQuery("""
@@ -219,21 +276,38 @@ class AppDataBase {
 
     Map<String, double> designationCountMap = {};
     for (var data in dbdata) {
-      designationCountMap[data['applied_designation']] = data['count'].toDouble();
+      designationCountMap[data['applied_designation']] =
+          data['count'].toDouble();
     }
     print(designationCountMap);
     return designationCountMap;
   }
 
-
   // update the status of the candidate
-  Future<void> updateCandidateStatus(String? recruit_number, String newStatus) async {
+  Future<void> updateCandidateStatus(
+      String? recruit_number, String newStatus) async {
     Database _dbClient = await getDatabase();
     await _dbClient.rawUpdate("""
     UPDATE RECRUITMENT
     SET recruitment_status = ?
     WHERE recruitment_number = ?
-  """, [newStatus,recruit_number ]);
+  """, [newStatus, recruit_number]);
     print("Candidate status updated successfully..........");
+  }
+
+// Fetch Admin Details for the HomeScreen data
+  Future<Map<String, dynamic>?> getAdminByEmail(String email) async {
+    Database _dbClient = await getDatabase();
+
+    final result = await _dbClient.rawQuery('''
+    SELECT * FROM ADMIN
+    WHERE email = ?
+  ''', [email]);
+
+    if (result.isNotEmpty) {
+      return result.first;
+    } else {
+      return null;
+    }
   }
 }
