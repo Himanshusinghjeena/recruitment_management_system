@@ -23,7 +23,7 @@ class _CustomListBuilderState extends State<CustomListBuilder> {
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => Details(

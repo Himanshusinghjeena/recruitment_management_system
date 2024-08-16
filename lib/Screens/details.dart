@@ -79,7 +79,7 @@ class _DetailsState extends State<Details> {
               top: 20,
               left: 10,
               child: IconButton(
-                icon:  Icon(color:Theme.of(context).highlightColor,Icons.arrow_back, size: 40),
+                icon:  Icon(color:Theme.of(context).canvasColor,Icons.arrow_back, size: 40),
                 onPressed: () {
                   Navigator.pop(context);
                 },

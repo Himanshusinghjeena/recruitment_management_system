@@ -7,6 +7,7 @@ class CustomSnackBar {
         SnackBarBehavior behavior = SnackBarBehavior.floating,
         EdgeInsetsGeometry? margin,
         double elevation = 10.0}) {
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),

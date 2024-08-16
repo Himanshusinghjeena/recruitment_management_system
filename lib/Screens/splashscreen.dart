@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:recruitment_management_system/Screens/Inactive.dart';
 import 'package:recruitment_management_system/Screens/active.dart';
+import 'package:recruitment_management_system/constant/constant.dart';
 
 class SplashScreen extends StatefulWidget {
   bool active;
@@ -20,8 +21,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void initState() {
     // TODO: implement initState
     super.initState();
-    animationController=AnimationController(vsync: this,duration:const Duration(milliseconds: 700));
-    animation=Tween(begin: 80.0,end: 500.0 ).animate(animationController);
+    animationController=AnimationController(vsync: this,duration:const Duration(milliseconds: 600));
+    animation=Tween(begin: 40.0,end: 300.0 ).animate(animationController);
 
     animationController.addListener((){
       setState(() {
@@ -29,18 +30,18 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       });
     });
     animationController.forward();
-    Future.delayed(const Duration(milliseconds: 800), () {
+    Future.delayed(const Duration(milliseconds: 600), () {
       if (widget.active) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => ActiveScreen()),
+          MaterialPageRoute(builder: (context) => const ActiveScreen()),
         );
       }
       else
         {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => InActiveScreen()),
+            MaterialPageRoute(builder: (context) => const InActiveScreen()),
           );
         }
     });
@@ -50,7 +51,19 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body:Center(child: Text("widget.sign",style: TextStyle(fontSize: animation.value)))
+      body:Center(child:
+          Container(
+            height:animation.value,
+            width:animation.value,
+            decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+              image: DecorationImage(
+                fit:BoxFit.fill,
+                image: AssetImage("assets/images/chetu.jpeg")
+              )
+            ),
+          )
+      )
     );
   }
 

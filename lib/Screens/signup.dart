@@ -85,7 +85,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 fit: BoxFit.contain,
-                                image: NetworkImage(navbarLogo))),
+                                image: AssetImage("assets/images/chetu.jpeg"))),
                       ),
                     ),
                     Expanded(

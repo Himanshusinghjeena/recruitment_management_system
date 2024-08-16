@@ -38,9 +38,11 @@ class _InActiveScreenState extends State<InActiveScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("INACTIVE CANDIDATES"),
-          bottom: const TabBar(
+          bottom:  TabBar(
+            indicatorColor: Theme.of(context).primaryColor,
+            labelColor: Theme.of(context).primaryColor,
             indicatorSize: TabBarIndicatorSize.tab,
-            tabs: [
+            tabs: const [
               Tab(
                   text:"Selected",
                   icon: Icon(Icons.badge,size: 40,)),
@@ -67,21 +69,6 @@ class _InActiveScreenState extends State<InActiveScreen> {
       ),
     );
 
-    //   Scaffold(
-    //     body: Container(
-    //         child: Column(children: [
-    //   const Padding(
-    //     padding: EdgeInsets.all(8.0),
-    //     child: Text(
-    //       "Active Candidates",
-    //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    //     ),
-    //   ),
-    //   Expanded(
-    //     flex: 1,
-    //     child: Container(
-    //         color: Colors.white, child: CustomListBuilder(candidate: newCandidate)),
-    //   ),
-    // ])));
+
   }
 }

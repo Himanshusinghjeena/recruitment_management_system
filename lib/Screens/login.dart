@@ -59,7 +59,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   "Login Successfully.........",
                   backgroundColor: Theme.of(context).primaryColor,
                 );
-                // Navigator.pushNamed(context, '/home',arguments: 'example@example.com',);
+
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -97,7 +97,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 fit: BoxFit.contain,
-                                image: NetworkImage(navbarLogo))),
+                                image: AssetImage("assets/images/chetu.jpeg"))),
                       ),
                     ),
                     Expanded(
